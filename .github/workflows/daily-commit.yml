@@ -2,8 +2,11 @@ name: Daily Commit
 
 on:
   schedule:
-    - cron: '10 5 * * *'  # Runs daily at 05:10 UTC (change as needed)
-  workflow_dispatch:      # Enables manual trigger too
+    - cron: '10 5 * * *'  # Runs daily at 05:10 UTC
+  workflow_dispatch:       # Optional manual trigger
+
+permissions:
+  contents: write  # ✅ Required to push commits
 
 jobs:
   commit-job:
@@ -13,7 +16,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Setup Git
+      - name: Set up Git
         run: |
           git config user.name "GitHub Action Bot"
           git config user.email "24f1001750@ds.study.iitm.ac.in"
